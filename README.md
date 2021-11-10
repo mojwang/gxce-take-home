@@ -31,6 +31,6 @@ We've included a `CHANGELOG.md` file that should be used to note the high level 
 
 It might be due to some dependency issue with locked dependencies `rm package-lock.json && npm install` to generate a new lock file.
 
-## npm ERR! notsup Unsupported engine for webf_take_home
+## npm ERR! notsup Unsupported engine for wmp_take_home
 
 You are using an unsupported version of node or npm in the project, refer to the `"engines"` section in package.json to see the supported versions.
