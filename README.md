@@ -21,6 +21,10 @@ Upon starting the app a webpack build will be started, this will take some time 
 
 Visit `http://localhost:8081` in browser.
 
+## Preparation
+
+Be prepared to explain your submission in detail for the phone screen; We want to talk about tradeoffs, decisions, gotchas, and anything you found while doing the exercise. Think about edge cases and how we could extend the architecture of your submission to handle more features.
+
 ## Tracking changes and improvements
 
 We've included a `CHANGELOG.md` file that should be used to note the high level improvements you've made to the app. You can use this file as a starting point for the conversation when we review this exercise. An example entry is included, but feel free to use a different format if you prefer.
