@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { css } from "@emotion/react";
+import React, { useState, useEffect, useContext } from "react";
 import { BoxArt } from "./BoxArt";
+import { BillboardContext } from '../context/BillboardContext';
+import { rowStyle } from './Rows.styles';
 
-export const Rows = ({ rows, videos = {}, setBillboardId }) => {
+export const Rows = ({ rows, videos = {} }) => {
   const [rowState, setRowState] = useState(rows || []);
+  const { setBillboardId } = useContext(BillboardContext);
 
   useEffect(async () => {
     if (!rowState.length) {
@@ -17,32 +19,14 @@ export const Rows = ({ rows, videos = {}, setBillboardId }) => {
   return (
     <div>
       {rowState?.map((row) => (
-        <div
-          key={row.rowTitle}
-          css={css`
-            padding: 0.5rem;
-          `}
-        >
-          <h2
-            css={css`
-              font-size: 1.2rem;
-            `}
-          >
-            {row.rowTitle}
-          </h2>
+        <div key={row.rowTitle} css={rowStyle}>
+          <h2>{row.rowTitle}</h2>
           <ul>
             {row.videoList.map((videoId) => (
-              <li
-                key={videoId}
-                css={css`
-                  display: inline-block;
-                  margin: 0.2rem;
-                `}
-              >
+              <li key={videoId}>
                 <BoxArt
                   videoId={videoId}
                   videoData={videos[videoId]}
-                  setBillboardId={setBillboardId}
                 />
               </li>
             ))}

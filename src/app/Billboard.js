@@ -1,37 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { css } from "@emotion/react";
+import React, { useState, useEffect, useContext } from "react";
+import { BillboardContext } from '../context/BillboardContext';
+import { billboardStyle, billboardTitleStyle } from './Billboard.styles';
 
-export const Billboard = ({ videoId, videoData }) => {
+export const Billboard = ({ videoData }) => {
+  const { billboardId } = useContext(BillboardContext);
   const [titleState, setTitleState] = useState(videoData);
 
   useEffect(async () => {
-    if (videoId) {
-      const response = await fetch(`/data/title/${videoId}`);
+    if (billboardId) {
+      const response = await fetch(`/data/title/${billboardId}`);
       const data = await response.json();
       setTitleState(data);
     }
-  }, [videoId]);
+  }, [billboardId]);
 
   return (
-    <div
-      id="billboard"
-      css={css`
-        position: sticky;
-        top: 0;
-        width: 100%;
-        height: 400px;
-        background-color: #000;
-        background-image: url("/images/displayart/${videoId}.jpg");
-        background-repeat: no-repeat;
-        background-position: right;
-      `}
-    >
-      <h1
-        css={css`
-          padding: 1rem;
-          font-size: 3rem;
-        `}
-      >
+    <div id="billboard" css={billboardStyle(billboardId)}>
+      <h1 css={billboardTitleStyle}>
         {titleState?.title}
       </h1>
     </div>

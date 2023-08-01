@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { css } from "@emotion/react";
+import React, { useState, useEffect, useContext } from "react";
+import { BillboardContext } from '../context/BillboardContext';
+import { boxArtStyle } from './BoxArt.styles';
 
-export const BoxArt = ({ videoId, videoData, setBillboardId }) => {
+export const BoxArt = ({ videoId, videoData }) => {
+  const { setBillboardId } = useContext(BillboardContext);
   const [titleState, setTitleState] = useState(videoData);
   const [isHighlighted, setIsHighlighted] = useState(false);
 
@@ -15,10 +17,7 @@ export const BoxArt = ({ videoId, videoData, setBillboardId }) => {
 
   return titleState ? (
     <div
-      css={css`
-        outline: ${isHighlighted ? "2px white inset" : "0"};
-        float: left;
-      `}
+      css={boxArtStyle(isHighlighted)}
       onMouseOver={() => {
         setIsHighlighted(true);
         setBillboardId(videoId);

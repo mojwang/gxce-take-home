@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { css, Global } from "@emotion/react";
+import { Global } from "@emotion/react";
 import { Billboard } from "./Billboard";
 import { Rows } from "./Rows";
+import { PropTypes } from "prop-types";
+import { BillboardProvider } from '../context/BillboardContext';
+import { GlobalStyles } from "./GlobalStyles";
 
 export const AppRoot = (props) => {
   const [billboardId, setBillboardId] = useState(
@@ -12,29 +15,23 @@ export const AppRoot = (props) => {
       <head>
         <title>Netflix</title>
         <link rel="stylesheet" href="/reset.css" />
-        <Global
-          styles={css`
-            html,
-            body {
-              background: #141414;
-              color: #fff;
-              font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            }
-          `}
-        />
+        <Global styles={GlobalStyles} />
       </head>
       <body>
-        <Billboard
-          videoId={billboardId}
-          videoData={props.videos?.[billboardId]}
-        />
-        <Rows
-          rows={props.rows}
-          videos={props.videos}
-          setBillboardId={setBillboardId}
-        />
+        <BillboardProvider value={{ billboardId, setBillboardId }}>
+          <Billboard videoData={props.videos?.[billboardId]} />
+          <Rows
+            rows={props.rows}
+            videos={props.videos}
+          />
+        </BillboardProvider>
         <script src="/build/client.js" />
       </body>
     </html>
   );
+};
+
+AppRoot.propTypes = {
+  rows: PropTypes.array,
+  videos: PropTypes.object,
 };
