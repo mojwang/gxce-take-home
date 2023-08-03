@@ -1,18 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useFetchVideoData } from "./hooks/useFetchVideoData";
 import { BillboardContext } from "./contexts/BillboardContext";
 import { billboardStyle, billboardTitleStyle } from "./styles/Billboard.styles";
 
 export const Billboard = React.memo(({ videoData }) => {
   const { billboardId } = useContext(BillboardContext);
-  const [titleState, setTitleState] = useState(videoData);
+  const { data: titleState, error } = useFetchVideoData(billboardId);
 
-  useEffect(async () => {
-    if (billboardId) {
-      const response = await fetch(`/data/title/${billboardId}`);
-      const data = await response.json();
-      setTitleState(data);
-    }
-  }, [billboardId]);
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div id="billboard" css={billboardStyle(billboardId)}>
