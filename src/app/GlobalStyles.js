@@ -1,4 +1,4 @@
-import { css } from '@emotion/react'
+import { css } from "@emotion/react";
 
 export const GlobalStyles = css`
   html,
@@ -20,4 +20,4 @@ export const GlobalStyles = css`
     display: inline-block;
     margin: 0.2rem;
   }
-`
+`;

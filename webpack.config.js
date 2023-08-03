@@ -4,7 +4,7 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = ["server", "client"].map((file) => ({
-  mode: process.env.NODE_ENV ? process.env.NODE_ENV : 'development',
+  mode: process.env.NODE_ENV ? process.env.NODE_ENV : "development",
   entry: {
     [file]: path.resolve(`./src/${file}`),
   },

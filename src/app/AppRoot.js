@@ -24,10 +24,7 @@ export const AppRoot = (props) => {
         <ErrorBoundary>
           <BillboardProvider value={{ billboardId, setBillboardId }}>
             <Billboard videoData={props.videos?.[billboardId]} />
-            <Rows
-              rows={props.rows}
-              videos={props.videos}
-            />
+            <Rows rows={props.rows} videos={props.videos} />
           </BillboardProvider>
         </ErrorBoundary>
         <script src="/build/client.js" />

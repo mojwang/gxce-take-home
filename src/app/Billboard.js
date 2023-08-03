@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { BillboardContext } from '../context/BillboardContext';
-import { billboardStyle, billboardTitleStyle } from './Billboard.styles';
+import { BillboardContext } from "../context/BillboardContext";
+import { billboardStyle, billboardTitleStyle } from "./Billboard.styles";
 
 export const Billboard = React.memo(({ videoData }) => {
   const { billboardId } = useContext(BillboardContext);
@@ -16,9 +16,7 @@ export const Billboard = React.memo(({ videoData }) => {
 
   return (
     <div id="billboard" css={billboardStyle(billboardId)}>
-      <h1 css={billboardTitleStyle}>
-        {titleState?.title}
-      </h1>
+      <h1 css={billboardTitleStyle}>{titleState?.title}</h1>
     </div>
   );
 });

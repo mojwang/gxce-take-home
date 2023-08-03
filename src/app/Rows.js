@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { BoxArt } from "./BoxArt";
-import { BillboardContext } from '../context/BillboardContext';
-import { rowStyle } from './Rows.styles';
+import { BillboardContext } from "../context/BillboardContext";
+import { rowStyle } from "./Rows.styles";
 
 export const Rows = ({ rows, videos = {} }) => {
   const [rowState, setRowState] = useState(rows || []);
@@ -24,10 +24,7 @@ export const Rows = ({ rows, videos = {} }) => {
           <ul>
             {row.videoList.map((videoId) => (
               <li key={videoId}>
-                <BoxArt
-                  videoId={videoId}
-                  videoData={videos[videoId]}
-                />
+                <BoxArt videoId={videoId} videoData={videos[videoId]} />
               </li>
             ))}
           </ul>
