@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+import fetchWithRetry from "../network/NetworkUtils";
 
 // in-memory cache to avoid duplicated requests
 const videoDataCache = {};
 
-export const useFetchVideoData = (videoId) => {
+export const useFetchVideoData = (videoId, videoData) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
@@ -15,11 +16,7 @@ export const useFetchVideoData = (videoId) => {
       }
 
       try {
-        const response = await fetch(`/data/title/${videoId}`);
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
-        }
-        const data = await response.json();
+        const data = await fetchWithRetry(`/data/title/${videoId}`);
         setData(data);
         videoDataCache[videoId] = data;
       } catch (err) {

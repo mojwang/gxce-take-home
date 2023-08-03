@@ -5,7 +5,7 @@ import { boxArtStyle } from "./styles/BoxArt.styles";
 
 export const BoxArt = React.memo(({ videoId, videoData }) => {
   const { setBillboardId } = useContext(BillboardContext);
-  const { data: titleState, error } = useFetchVideoData(videoId);
+  const { data: titleState, error } = useFetchVideoData(videoId, videoData);
   const [isHighlighted, setIsHighlighted] = useState(false);
 
   // Use `useCallback` to memoize these functions so they aren't re-created on every render
@@ -17,8 +17,6 @@ export const BoxArt = React.memo(({ videoId, videoData }) => {
   const handleMouseOut = useCallback(() => {
     setIsHighlighted(false);
   }, []);
-
-  if (error) return <p>Error: {error}</p>;
 
   return titleState ? (
     <div

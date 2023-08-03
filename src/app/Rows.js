@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { BoxArt } from "./BoxArt";
 import { BillboardContext } from "./contexts/BillboardContext";
 import { rowStyle } from "./styles/Rows.styles";
+import fetchWithRetry from "./network/NetworkUtils";
 
 export const Rows = ({ rows, videos = {} }) => {
   const [rowState, setRowState] = useState(rows || []);
@@ -9,8 +10,7 @@ export const Rows = ({ rows, videos = {} }) => {
 
   useEffect(async () => {
     if (!rowState.length) {
-      const response = await fetch("/data/rows");
-      const data = await response.json();
+      const data = await fetchWithRetry("/data/rows");
       setRowState(data);
       setBillboardId(data[0].videoList[0]);
     }
