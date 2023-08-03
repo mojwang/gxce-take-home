@@ -4,7 +4,7 @@ import { Billboard } from "./Billboard";
 import { Rows } from "./Rows";
 import { PropTypes } from "prop-types";
 import { BillboardProvider } from "./contexts/BillboardContext";
-import { GlobalStyles } from "./GlobalStyles";
+import { GlobalStyles } from "./styles/GlobalStyles";
 import ErrorBoundary from "./ErrorBoundary";
 
 export const AppRoot = (props) => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { BillboardContext } from "./contexts/BillboardContext";
-import { boxArtStyle } from "./BoxArt.styles";
+import { boxArtStyle } from "./styles/BoxArt.styles";
 
 export const BoxArt = React.memo(({ videoId, videoData }) => {
   const { setBillboardId } = useContext(BillboardContext);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { BoxArt } from "./BoxArt";
 import { BillboardContext } from "./contexts/BillboardContext";
-import { rowStyle } from "./Rows.styles";
+import { rowStyle } from "./styles/Rows.styles";
 
 export const Rows = ({ rows, videos = {} }) => {
   const [rowState, setRowState] = useState(rows || []);
