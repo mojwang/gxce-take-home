@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { BillboardContext } from "../context/BillboardContext";
+import { BillboardContext } from "./contexts/BillboardContext";
 import { billboardStyle, billboardTitleStyle } from "./Billboard.styles";
 
 export const Billboard = React.memo(({ videoData }) => {

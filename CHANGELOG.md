@@ -10,10 +10,10 @@
 8. **Error Boundaries**: Since this is the root component, we need to wrap it in an error boundary for better error handling. Error boundaries are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed.
 9. **Component Testing**: Implement tests for all the components to ensure they're working as expected. This can be done using testing libraries such as Jest and Testing Library.
 10. **Lazy Loading**: Add lazy loading to the rows of videos to improve performance. This way, a row would only load its data when it's about to come into the viewport. I used the IntersectionObserver API to acheive this.
-11. **Error Handling and Retries**: Enhance error handling by wrapping all fetch calls in try/catch blocks. This will allow us to handle network errors more gracefully. Handling Errors and Using Retry Mechanisms (jitter, back-off time, retries).
-12. **Create a Custom Hook for Fetch Calls**: You can see there's a pattern of fetching data in your components (Billboard, BoxArt, Rows). You can abstract this logic into a custom hook, which will make your components cleaner and easier to test.
-13. **Component Breakdown**: The Rows component seems to be doing a lot of things. Break it down into smaller functional components. The mapping and rendering of the list of box arts should be a separate component.
-14. **Custom Hooks**: Using custom hooks for data fetching. For instance, in both the Billboard and BoxArt components, we're fetching video data in the useEffect hook. This could be abstracted into a custom hook like useFetchVideoData(videoId), which could return the video data and a loading state.
+11. **Error Handling and Retries**: Enhance error handling by wrapping all fetch calls in try/catch blocks. This will allow us to handle network errors more gracefully. Handling Errors and Using Retry Mechanisms (jitter, back-off time, retries). Consider using Axios which gives us a lot of those supports for free.
+12. **Custom Hooks**: Using custom hooks for data fetching. For instance, in both the Billboard and BoxArt components, we're fetching video data in the useEffect hook. This could be abstracted into a custom hook like useFetchVideoData(videoId), which could return the video data and a loading state.
+13. **Client-side cache**: Adding caches to all the video data to avoid refetching.
+14. **Component Breakdown**: The Rows component seems to be doing a lot of things. Break it down into smaller functional components. The mapping and rendering of the list of box arts should be a separate component.
 15. **Use HTTP/2**: Make sure your server supports HTTP/2. This protocol allows multiple files to be transferred simultaneously, reducing the amount of time it takes to get all the files.
 
 # SDUI vs CDUI

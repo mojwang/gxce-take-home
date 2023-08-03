@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { BoxArt } from "./BoxArt";
-import { BillboardContext } from "../context/BillboardContext";
+import { BillboardContext } from "./contexts/BillboardContext";
 import { rowStyle } from "./Rows.styles";
 
 export const Rows = ({ rows, videos = {} }) => {

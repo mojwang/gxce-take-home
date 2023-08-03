@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
-import { BillboardContext } from "../context/BillboardContext";
+import { BillboardContext } from "./contexts/BillboardContext";
 import { boxArtStyle } from "./BoxArt.styles";
 
 export const BoxArt = React.memo(({ videoId, videoData }) => {

@@ -3,7 +3,7 @@ import { Global } from "@emotion/react";
 import { Billboard } from "./Billboard";
 import { Rows } from "./Rows";
 import { PropTypes } from "prop-types";
-import { BillboardProvider } from "../context/BillboardContext";
+import { BillboardProvider } from "./contexts/BillboardContext";
 import { GlobalStyles } from "./GlobalStyles";
 import ErrorBoundary from "./ErrorBoundary";
 
