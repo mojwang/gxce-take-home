@@ -4,6 +4,7 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = ["server", "client"].map((file) => ({
+  mode: process.env.NODE_ENV ? process.env.NODE_ENV : 'development',
   entry: {
     [file]: path.resolve(`./src/${file}`),
   },
@@ -38,9 +39,6 @@ module.exports = ["server", "client"].map((file) => ({
     // splitChunks: { chunks: 'all' }
   },
   plugins: [
-    new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-    }),
     // new CleanWebpackPlugin(),
     // new ChunksPlugin({
     //     generateChunksManifest: true,

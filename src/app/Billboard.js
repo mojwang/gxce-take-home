@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { BillboardContext } from '../context/BillboardContext';
 import { billboardStyle, billboardTitleStyle } from './Billboard.styles';
 
-export const Billboard = ({ videoData }) => {
+export const Billboard = React.memo(({ videoData }) => {
   const { billboardId } = useContext(BillboardContext);
   const [titleState, setTitleState] = useState(videoData);
 
@@ -21,4 +21,4 @@ export const Billboard = ({ videoData }) => {
       </h1>
     </div>
   );
-};
+});
