@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
+import React, { useState, useContext, useCallback } from "react";
 import { useFetchVideoData } from "./hooks/useFetchVideoData";
 import { BillboardContext } from "./contexts/BillboardContext";
 import { boxArtStyle } from "./styles/BoxArt.styles";
