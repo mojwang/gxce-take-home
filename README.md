@@ -5,7 +5,7 @@
 - Node v14.x+
 - NPM 6.x
 
-_Note:_ We have support for NVM; if you run `nvm install` or `nvm use` at root of the project you should get the right node version installed
+*Note:* We have support for NVM; if you run `nvm install` or `nvm use` at root of the project you should get the right node version installed
 
 ## Running the app
 

@@ -1,30 +1,31 @@
-import React, { useState, useContext, useCallback } from "react";
-import { useFetchVideoData } from "./hooks/useFetchVideoData";
-import { BillboardContext } from "./contexts/BillboardContext";
-import { boxArtStyle } from "./styles/BoxArt.styles";
+import React, { useState, useEffect } from "react";
+import { css } from "@emotion/react";
 
-export const BoxArt = React.memo(({ videoId, videoData }) => {
-  const { setBillboardId } = useContext(BillboardContext);
-  const { data: titleState, error } = useFetchVideoData(videoId, videoData);
+export const BoxArt = ({ videoId, videoData, setBillboardId }) => {
+  const [titleState, setTitleState] = useState(videoData);
   const [isHighlighted, setIsHighlighted] = useState(false);
 
-  // Use `useCallback` to memoize these functions so they aren't re-created on every render
-  const handleMouseOver = useCallback(() => {
-    setIsHighlighted(true);
-    setBillboardId(videoId);
-  }, [videoId, setBillboardId]);
-
-  const handleMouseOut = useCallback(() => {
-    setIsHighlighted(false);
-  }, []);
+  useEffect(async () => {
+    if (!titleState) {
+      const response = await fetch(`/data/title/${videoId}`);
+      const data = await response.json();
+      setTitleState(data);
+    }
+  });
 
   return titleState ? (
     <div
-      css={boxArtStyle(isHighlighted)}
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
+      css={css`
+        outline: ${isHighlighted ? "2px white inset" : "0"};
+        float: left;
+      `}
+      onMouseOver={() => {
+        setIsHighlighted(true);
+        setBillboardId(videoId);
+      }}
+      onMouseOut={() => setIsHighlighted(false)}
     >
       <img src={`/images/boxart/${videoId}.jpg`} alt={titleState.title} />
     </div>
   ) : null;
-});
+};

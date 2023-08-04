@@ -1,16 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
+import { css } from "@emotion/react";
 import { BoxArt } from "./BoxArt";
-import { BillboardContext } from "./contexts/BillboardContext";
-import { rowStyle } from "./styles/Rows.styles";
-import fetchWithRetry from "./network/NetworkUtils";
 
-export const Rows = ({ rows, videos = {} }) => {
+export const Rows = ({ rows, videos = {}, setBillboardId }) => {
   const [rowState, setRowState] = useState(rows || []);
-  const { setBillboardId } = useContext(BillboardContext);
 
   useEffect(async () => {
     if (!rowState.length) {
-      const data = await fetchWithRetry("/data/rows");
+      const response = await fetch("/data/rows");
+      const data = await response.json();
       setRowState(data);
       setBillboardId(data[0].videoList[0]);
     }
@@ -19,12 +17,33 @@ export const Rows = ({ rows, videos = {} }) => {
   return (
     <div>
       {rowState?.map((row) => (
-        <div key={row.rowTitle} css={rowStyle}>
-          <h2>{row.rowTitle}</h2>
+        <div
+          key={row.rowTitle}
+          css={css`
+            padding: 0.5rem;
+          `}
+        >
+          <h2
+            css={css`
+              font-size: 1.2rem;
+            `}
+          >
+            {row.rowTitle}
+          </h2>
           <ul>
             {row.videoList.map((videoId) => (
-              <li key={videoId}>
-                <BoxArt videoId={videoId} videoData={videos[videoId]} />
+              <li
+                key={videoId}
+                css={css`
+                  display: inline-block;
+                  margin: 0.2rem;
+                `}
+              >
+                <BoxArt
+                  videoId={videoId}
+                  videoData={videos[videoId]}
+                  setBillboardId={setBillboardId}
+                />
               </li>
             ))}
           </ul>
