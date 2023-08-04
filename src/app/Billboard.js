@@ -1,39 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { css } from "@emotion/react";
+import React, { useContext } from "react";
+import { useFetchVideoData } from "./hooks/useFetchVideoData";
+import { BillboardContext } from "./contexts/BillboardContext";
+import { billboardStyle, billboardTitleStyle } from "./styles/Billboard.styles";
 
-export const Billboard = ({ videoId, videoData }) => {
-  const [titleState, setTitleState] = useState(videoData);
-
-  useEffect(async () => {
-    if (videoId) {
-      const response = await fetch(`/data/title/${videoId}`);
-      const data = await response.json();
-      setTitleState(data);
-    }
-  }, [videoId]);
+export const Billboard = React.memo(({ videoData }) => {
+  const { billboardId } = useContext(BillboardContext);
+  const { data: titleState, error } = useFetchVideoData(billboardId, videoData);
 
   return (
-    <div
-      id="billboard"
-      css={css`
-        position: sticky;
-        top: 0;
-        width: 100%;
-        height: 400px;
-        background-color: #000;
-        background-image: url("/images/displayart/${videoId}.jpg");
-        background-repeat: no-repeat;
-        background-position: right;
-      `}
-    >
-      <h1
-        css={css`
-          padding: 1rem;
-          font-size: 3rem;
-        `}
-      >
-        {titleState?.title}
-      </h1>
+    <div id="billboard" css={billboardStyle(billboardId)}>
+      <h1 css={billboardTitleStyle}>{titleState?.title}</h1>
     </div>
   );
-};
+});
