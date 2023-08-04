@@ -1,3 +1,21 @@
+# SDUI vs CDUI
+
+Pros of Server-Driven UI:
+
+- Simplified client development
+- Rapid changes and A/B testing
+- Consistency across platforms
+- Less load on client side
+
+Cons of Server-Driven UI:
+
+- Dependence on network connectivity:
+  - Leverage Service Workers to create a Progressive Web Application (PWA). Service workers can cache the server-rendered pages and serve them when the user is offline.
+- High server load:
+  - Implementing caching strategies at various levels of the application can help reduce the load on the server. This can be done at the database level, application level, and even at the edge (using a CDN). Load balancing and horizontal scaling (adding more servers when the load increases) can also be effective.
+- Potential security risks:
+  - Always sanitize and validate any data coming from the client to prevent injection attacks. Use HTTPS to encrypt data in transit. Regularly update dependencies to avoid potential security vulnerabilities.
+
 # Changelog
 
 1. **Style Separation**: Instead of using inline CSS in each component file, we should create a separate styles file for each component, using either CSS or JS (for example, with styled-components or CSS modules).
@@ -13,19 +31,3 @@
 11. **Custom Hooks**: Using custom hooks for data fetching. For instance, in both the Billboard and BoxArt components, we're fetching video data in the useEffect hook. This could be abstracted into a custom hook like useFetchVideoData(videoId), which could return the video data and a loading state.
 12. **Client-side cache**: Adding caches to all the video data to avoid refetching.
 13. **Use HTTP/2**: Modify server to support HTTP/2. This protocol allows multiple files to be transferred simultaneously, reducing the amount of time it takes to get all the files.
-
-# SDUI vs CDUI
-
-Pros of Server-Driven UI:
-
-- Simplified client development
-- Rapid changes and A/B testing
-- Consistency across platforms
-- Less load on client side
-
-Cons of Server-Driven UI:
-
-- Dependence on network connectivity
-- High server load
-- Potential security risks
-- Less flexibility for offline scenarios

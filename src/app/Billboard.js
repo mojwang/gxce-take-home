@@ -1,4 +1,4 @@
-import React, {useContext } from "react";
+import React, { useContext } from "react";
 import { useFetchVideoData } from "./hooks/useFetchVideoData";
 import { BillboardContext } from "./contexts/BillboardContext";
 import { billboardStyle, billboardTitleStyle } from "./styles/Billboard.styles";
