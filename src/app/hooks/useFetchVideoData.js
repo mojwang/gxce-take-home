@@ -5,7 +5,7 @@ import fetchWithRetry from "../network/NetworkUtils";
 const videoDataCache = {};
 
 export const useFetchVideoData = (videoId, videoData) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(videoData);
   const [error, setError] = useState(null);
 
   useEffect(() => {
